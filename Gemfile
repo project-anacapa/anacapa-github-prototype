@@ -47,6 +47,7 @@ end
 
 
 gem 'devise'
+gem 'omniauth-github'
 gem 'cancancan'
 gem 'rolify'
 
