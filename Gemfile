@@ -45,6 +45,7 @@ group :development do
   gem 'spring'
 end
 
+gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'devise'
 gem 'omniauth-github'
