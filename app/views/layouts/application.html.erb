@@ -9,6 +9,7 @@
 <body>
 
 <%= link_to "Sign in with GitHub", user_omniauth_authorize_path(:github) %>
+<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
 
 <%= yield %>
 

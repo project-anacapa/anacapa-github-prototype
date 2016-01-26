@@ -1,3 +1,5 @@
+require 'net/https'
+
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
@@ -12,6 +14,24 @@ class User < ActiveRecord::Base
 #      user.password = Devise.friendly_token[0,20]
 #      user.name = auth.info.name
 #      user.image = auth.info.image
+    end
+  end
+
+  def github_emails(token)
+    uri = URI.parse("https://api.github.com/user/emails")
+    http = Net::HTTP.new(uri.host,uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request["Authorization"] = "token " + token
+
+    response = http.request(request)
+    case response.code.to_i
+    when 200 || 201
+      response.body
+    else
+      nil
     end
   end
 end

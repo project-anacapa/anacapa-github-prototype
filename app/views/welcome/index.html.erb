@@ -1,1 +1,10 @@
 <p>Hello World!</p>
+
+<% if current_user %>
+    <p><%= current_user.to_json %><p>
+    <p><%= current_user.github_emails(session[:github_token]) %></p>
+<% else %>
+    <p>No user logged in!</p>
+<% end %>
+<p><%= session.to_json %></p>
+<p><%= session['devise'].to_json %></p>
