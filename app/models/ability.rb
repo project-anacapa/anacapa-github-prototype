@@ -8,7 +8,7 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     else if user.has_role? :instructor
-      can :crud, Courses
+      can :crud, Course
     else
       can :read, :all
     end
