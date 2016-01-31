@@ -14,7 +14,8 @@
     <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
 <% else %>
     <li><%= link_to "Sign in with GitHub", user_omniauth_authorize_path(:github) %></li>
-<% end %>
+    <% end %>
+<li><%= link_to "Courses", courses_path %></li>    
 </ul></nav>
 
 <%= yield %>
