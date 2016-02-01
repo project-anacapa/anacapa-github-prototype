@@ -2,9 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+
+    alia_action :creat, :read, :update, :destroy, :to => :crud
     
     if user.has_role? :admin
       can :manage, :all
+    else if user.has_role? :instructor
+      can :crud, Course
     else
       can :read, :all
     end
