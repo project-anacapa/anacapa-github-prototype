@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get ''. to: 'dashboard#index', as: '/'
-  end
-
   resources :courses
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.
@@ -14,6 +10,14 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+
+  match '/auth/admin/callback', :to => 'sessions#authenticate_admin', via: :get
+  constraints :subdomain => 'admin' do
+    scope :module => 'admin', :as => 'admin' do
+      root :to => 'users#index'
+       resources :users #etc
+    end
   end
 
   # Example of regular route:

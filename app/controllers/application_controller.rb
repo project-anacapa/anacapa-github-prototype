@@ -11,4 +11,13 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
+
+  def admin?
+    session[:admin_user] && (ENV['ADMINS'] || "").split(',').include?(session[:admin_user])
+  end
+
+  helper_method :admin?
+  def admin_required
+    redirect_to '/auth/admin' unless admin?
+  end
 end
