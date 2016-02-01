@@ -51,5 +51,4 @@ gem 'devise'
 gem 'omniauth-github'
 gem 'cancancan'
 gem 'rolify'
-
-
+gem 'hirb'
