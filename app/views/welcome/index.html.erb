@@ -5,6 +5,7 @@
     <p><%= current_user.github_emails(session[:github_token]) %></p>
 <% else %>
     <p>No user logged in!</p>
-<% end %>
+    <% end %>
+	
 <p><%= session.to_json %></p>
 <p><%= session['devise'].to_json %></p>
