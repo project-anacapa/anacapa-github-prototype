@@ -25,18 +25,14 @@ namespace :super_admin do
   desc "Lists all admins"
   task :list_admins => [:environment] do |t, args|
     users = User.with_role(:admin)
-    puts Hirb::Helpers::AutoTable.render users, :fields=>[:email, :name, :id]
+    puts Hirb::Helpers::AutoTable.render users, :fields=>[:email, :name, :id, :is_admin]
     puts "For syntax of how to grant or revoke admin privs, type rake super_admin:help"
   end
 
   desc "Lists all non-admins"
   task :list_non_admins => [:environment] do |t, args|
-    begin
-      users = User.where.not(id: User.with_role(:admin).pluck(users: :id))
-      puts Hirb::Helpers::AutoTable.render users, :fields=>[:email, :name, :id]
-    rescue
-      puts "No users at all"
-    end
+    users = User.all - User.with_role(:admin).to_a
+    puts Hirb::Helpers::AutoTable.render users, :fields=>[:email, :name, :id, :is_admin]
     puts "For syntax of how to grant or revoke admin privs, type rake super_admin:help"
   end
   
@@ -49,8 +45,7 @@ namespace :super_admin do
       if !user
         puts "No user found with id: #{args.id}"
       else
-        user.is_admin = true
-        user.save!
+        user.add_role "admin"
         puts Hirb::Helpers::AutoTable.render user, :fields=>[:email, :name, :id, :is_admin]
       end
     end
@@ -65,8 +60,7 @@ namespace :super_admin do
       if !user
         puts "No user found with id: #{args.id}"
       else
-        user.is_admin = false
-        user.save!
+        user.remove_role "admin"
         puts Hirb::Helpers::AutoTable.render user, :fields=>[:email, :name, :id, :is_admin]
       end
     end
