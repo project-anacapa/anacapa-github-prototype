@@ -9,6 +9,8 @@ namespace :super_admin do
   desc "Help"
   task :help => [:environment] do |t|
     puts " to list all users           rake super_admin:list_users   "
+    puts " to list all admins          rake super_admin:list_admins   "
+    puts " to list all non-admins      rake super_admin:list_non_admins   "
     puts " to make a user an admin     rake super_admin:grant_admin_permission[< user's id >]   "
     puts " to revoke admin privleges   rake super_admin:revoke_admin_permission[< user's id >]   "
   end
@@ -20,6 +22,24 @@ namespace :super_admin do
     puts "For syntax of how to grant or revoke admin privs, type rake super_admin:help"
   end
 
+  desc "Lists all admins"
+  task :list_admins => [:environment] do |t, args|
+    users = User.with_role(:admin)
+    puts Hirb::Helpers::AutoTable.render users, :fields=>[:email, :name, :id]
+    puts "For syntax of how to grant or revoke admin privs, type rake super_admin:help"
+  end
+
+  desc "Lists all non-admins"
+  task :list_non_admins => [:environment] do |t, args|
+    begin
+      users = User.where.not(id: User.with_role(:admin).pluck(users: :id))
+      puts Hirb::Helpers::AutoTable.render users, :fields=>[:email, :name, :id]
+    rescue
+      puts "No users at all"
+    end
+    puts "For syntax of how to grant or revoke admin privs, type rake super_admin:help"
+  end
+  
   desc "Grants a user admin permission"
   task :grant_admin_permission, [:id] => [:environment] do |t, args|
     if !args.id
