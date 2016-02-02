@@ -12,14 +12,6 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  match '/auth/admin/callback', :to => 'sessions#authenticate_admin', via: :get
-  constraints :subdomain => 'admin' do
-    scope :module => 'admin', :as => 'admin' do
-      root :to => 'users#index'
-       resources :users #etc
-    end
-  end
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
