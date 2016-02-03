@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
+      # TODO
+      # user.token = auth.credentials.token
 #      user.password = Devise.friendly_token[0,20]
 #      user.name = auth.info.name
 #      user.image = auth.info.image
