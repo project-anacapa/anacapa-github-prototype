@@ -5,9 +5,9 @@ class Ability
 
     alias_action :create, :read, :update, :destroy, :to => :crud
     
-    if user.has_role? :admin
+    if (user && user.has_role?(:admin))
       can :manage, :all
-    elsif user.has_role? :instructor
+    else if (user && user.has_role?(:instructor))
       can :crud, Course
     else
       can :read, :all
@@ -39,4 +39,5 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end
+end
 end
