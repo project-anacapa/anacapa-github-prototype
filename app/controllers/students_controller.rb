@@ -61,6 +61,16 @@ class StudentsController < ApplicationController
     end
   end
 
+  def add_course
+    @student = Student.find(params[:id])
+    @course = @student.courses.build(params[:course_id])
+    if @course.save
+      render :json => @course
+    else
+      render :json => @course, :status => :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
