@@ -2,7 +2,7 @@
 
 <% if current_user %>
     <p><%= current_user.to_json %><p>
-    <p><%= github_emails(session[:github_token]) %></p>
+    <p><%= current_user.github_emails %></p>
 <% else %>
     <p>No user logged in!</p>
     <% end %>

@@ -3,7 +3,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
     # render text:request.env['omniauth.auth'].to_json
     session[:github_data] = request.env["omniauth.auth"]
-    session[:github_token] = request.env["omniauth.auth"]["credentials"]["token"]
     session[:user_id] = @user.id
 
     if @user.persisted?
