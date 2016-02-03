@@ -2,8 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
-    alia_action :creat, :read, :update, :destroy, :to => :crud
+    user ||= User.new # Guest user
+    alias_action :create, :read, :update, :destroy, :to => :crud
     
     if user.has_role? :admin
       can :manage, :all
