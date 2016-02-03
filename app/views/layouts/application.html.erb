@@ -8,18 +8,20 @@
 </head>
 <body>
 
-<nav><ul>
-<li><%= link_to "Home", root_path %></li>
+<p id="alert"><%= alert %></p>
+<p id="notice"><%= notice %></p>
+
 <% if current_user %>
-<li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+    <nav><ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to "Courses", courses_path %></li>
+        <li><%= link_to "Admin Panel", admin_panel_path(:id) %></li>
+    </ul></nav>
+    <%= yield %>
 <% else %>
-    <li><%= link_to "Sign in with GitHub", user_omniauth_authorize_path(:github) %></li>
-    <% end %>
-<li><%= link_to "Courses", courses_path %></li>    
-
-</ul></nav>
-
-<%= yield %>
+    <p>Please sign in to continue: <%= link_to "Sign in with GitHub", user_omniauth_authorize_path(:github) %></p>
+<% end %>
 
 </body>
 </html>
