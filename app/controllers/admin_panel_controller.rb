@@ -3,11 +3,11 @@ class AdminPanelController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_only
 
-  def list
-    @users = User.all
+  def index
   end
    
   def show
+    @users = User.all
   end
    
   def new
