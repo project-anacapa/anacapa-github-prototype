@@ -1,4 +1,3 @@
-require 'net/https'
 
 class User < ActiveRecord::Base
   rolify
@@ -13,9 +12,6 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.name = auth.info.name
       user.github_token = auth.credentials.token
-#      user.password = Devise.friendly_token[0,20]
-#      user.name = auth.info.name
-#      user.image = auth.info.image
     end
   end
   
@@ -31,10 +27,24 @@ class User < ActiveRecord::Base
     response = http.request(request)
     case response.code.to_i
     when 200 || 201
-      response.body
+      JSON.parse(response.body)
     else
       nil
     end
+  end
+
+  def student_record
+    emails = self.github_emails
+    student = nil
+    unless emails.nil?
+      emails.each do |email|
+        begin
+          student = Student.find_by! email: email["email"]
+        rescue ActiveRecord::RecordNotFound => e
+        end
+      end
+    end
+    return student
   end
 
   def is_admin
