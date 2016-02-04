@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203210720) do
+ActiveRecord::Schema.define(version: 20160204210240) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "dept"
@@ -40,11 +40,15 @@ ActiveRecord::Schema.define(version: 20160203210720) do
   add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "students", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "studentid"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email"
+    t.string  "studentid"
+    t.integer "user_id"
   end
+
+  add_index "students", ["email"], name: "index_students_on_email", unique: true
+  add_index "students", ["studentid"], name: "index_students_on_studentid", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
