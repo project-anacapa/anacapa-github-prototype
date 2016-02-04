@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :courses
-  resources :admin_panel
+  resources :admin_panel do
+    member do
+      post 'toggle_admin'
+      post 'toggle_instructor'
+    end
+  end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
