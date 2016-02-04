@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     request = Net::HTTP::Get.new(uri.request_uri)
-    request["Authorization"] = "token " + token
+    request["Authorization"] = "token " + token.to_s
 
     response = http.request(request)
     case response.code.to_i
