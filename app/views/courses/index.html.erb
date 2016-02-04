@@ -6,7 +6,7 @@
       <th>Dept</th>
       <th>Num</th>
       <th>Desc</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -16,6 +16,7 @@
         <td><%= course.dept %></td>
         <td><%= course.num %></td>
         <td><%= course.desc %></td>
+        <td><%= link_to 'Roster', edit_roster_course_path(course.id) %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>

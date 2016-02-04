@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
+
   resources :students do
     member do
       # POST /students/:id/courses
       post 'courses', :to => "students#add_course", :as => :add_course_to
     end
   end
-  resources :courses
+  resources :courses do
+    member do
+      get 'roster', :to => "courses#edit_roster", :as => :edit_roster
+      post 'roster', :to => "courses#add_student", :as => :add_student
+    end
+  end
   resources :admin_panel
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.
