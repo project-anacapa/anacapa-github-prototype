@@ -3,10 +3,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Dept</th>
-      <th>Num</th>
-      <th>Desc</th>
-      <th colspan="4"></th>
+      <th>Department</th>
+      <th>Number</th>
+      <th>Description</th>
+      <th>Instructor</th>
+      <th>Term</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -16,10 +18,12 @@
         <td><%= course.dept %></td>
         <td><%= course.num %></td>
         <td><%= course.desc %></td>
-        <td><%= link_to 'Roster', edit_roster_course_path(course.id) %></td>
+        <td><%= course.instructor.name %></td>
+        <td><%= course.term %></td>
+        <!-- <td><%= link_to 'Roster', edit_roster_course_path(course.id) %></td> -->
         <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%= link_to 'Edit', edit_course_path(course) %></td>
+        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>

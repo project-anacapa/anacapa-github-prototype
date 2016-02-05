@@ -2,6 +2,7 @@
 class User < ActiveRecord::Base
   rolify
   has_one :student
+  has_many :courses, class_name: "Course", :foreign_key => :instructor
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :rememberable, :omniauthable, :trackable, :omniauth_providers => [:github]

@@ -1,22 +1,36 @@
 <p>
-  <strong>Dept:</strong>
+  <strong>Department:</strong>
   <%= @course.dept %>
 </p>
 
 <p>
-  <strong>Num:</strong>
+  <strong>Course Number:</strong>
   <%= @course.num %>
 </p>
 
 <p>
-  <strong>Desc:</strong>
+  <strong>Description:</strong>
   <%= @course.desc %>
+</p>
+
+<p>
+  <strong>Instructor:</strong>
+  <%= @course.instructor.name %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @course.term %>
 </p>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
+<br/>
+<%= link_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <hr>
+<p><%= link_to 'Edit Course Roster', edit_roster_course_path(@course.id) %></p>
+
 <p>Students:</p>
 <ul>
 <% @course.students.each do |student| %>
