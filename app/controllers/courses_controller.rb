@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :edit_roster, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :edit_roster, :add_student, :update, :destroy]
   load_and_authorize_resource
 
   # GET /courses
@@ -29,7 +29,9 @@ class CoursesController < ApplicationController
   end
 
   def add_student
-    render json: params.to_json
+    @student = Student.get_student(params[:student].permit(:first_name, :last_name, :email, :studentid))
+    @course.students << @student
+    redirect_to :back, :notice => @student
   end
 
   # POST /courses
