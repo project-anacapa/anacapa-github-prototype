@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
   def add_student
     @student = Student.get_student(params[:student].permit(:first_name, :last_name, :email, :studentid))
     @course.students << @student
-    redirect_to :back, :notice => @student
+    redirect_to :back, :notice => "Student successfully added to course."
   end
 
   # POST /courses

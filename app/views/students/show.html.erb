@@ -21,9 +21,10 @@
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
 
+<hr>
 <p>Courses:</p>
 <ul>
 <% @student.courses.each do |course| %>
-    <li><%= course.to_json %></li>
+    <li><%= link_to course.dept << " " << course.num, course %></li>
 <% end %>
 </ul>

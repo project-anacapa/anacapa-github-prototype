@@ -15,3 +15,11 @@
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
+
+<hr>
+<p>Students:</p>
+<ul>
+<% @course.students.each do |student| %>
+    <li><%= link_to student.first_name << " " << student.last_name << " (" << student.email << ")", student %></li>
+<% end %>
+</ul>

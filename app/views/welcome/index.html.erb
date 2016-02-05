@@ -1,20 +1,16 @@
 <% if current_user %>
 <p>Welcome, <%= current_user.name %>!</p>
-<p><%= current_user.github_emails %></p>
-<p><%= current_user.student_record.to_json %></p>
 
-    <% if current_user.student_record and current_user.student_record.courses.any? %>
-        <p>There is a student!</p>
-
-        <p>Here is a list of your courses:</p>
-        <ul>
-        <% current_user.student_record.courses.each do |course| %>
-            <li><%= course.to_json %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        No student or no courses!
+  <% if current_user.student_record and current_user.student_record.courses.any? %>
+    <p>Here is a list of your courses:</p>
+    <ul>
+    <% current_user.student_record.courses.each do |course| %>
+      <li><%= link_to course.dept << course.num, course %></li>
     <% end %>
+    </ul>
+  <% else %>
+    No student or no courses!
+  <% end %>
 
 <% else %> <!-- if not current_user -->
 <p>No user logged in! Please <%= link_to "Log In", user_omniauth_authorize_path(:github) %></p>
