@@ -37,7 +37,7 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(course_params)
+    @course = Course.new(course_params.merge(:instructor => current_user))
 
     respond_to do |format|
       if @course.save
@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1.json
   def update
     respond_to do |format|
-      if @course.update(course_params)
+      if @course.update(course_params.merge(:instructor => current_user))
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
@@ -82,6 +82,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:dept, :num, :desc)
+      params.require(:course).permit(:dept, :num, :desc, :term)
     end
 end
