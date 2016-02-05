@@ -1,0 +1,30 @@
+<p>
+  <strong>First name:</strong>
+  <%= @student.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @student.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @student.email %>
+</p>
+
+<p>
+  <strong>Studentid:</strong>
+  <%= @student.studentid %>
+</p>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>
+
+<hr>
+<p>Courses:</p>
+<ul>
+<% @student.courses.each do |course| %>
+    <li><%= link_to course.dept << " " << course.num, course %></li>
+<% end %>
+</ul>
