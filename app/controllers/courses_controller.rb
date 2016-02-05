@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :edit_roster, :add_student, :csv_course_roster, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :edit_roster, :add_student, :remove_student, :csv_course_roster, :update, :destroy]
   load_and_authorize_resource
 
   # GET /courses
@@ -32,6 +32,12 @@ class CoursesController < ApplicationController
     @student = Student.get_student(params[:student].permit(:first_name, :last_name, :email, :studentid))
     @course.students << @student
     redirect_to :back, :notice => "Student successfully added to course."
+  end
+
+  def remove_student
+    @student = Student.find_by(studentid: params[:studentid])
+    @student.courses.delete(@course)
+    redirect_to :back, :alert => @student.first_name << " " << @student.last_name << " has been removed from this class."
   end
 
   def csv_course_roster

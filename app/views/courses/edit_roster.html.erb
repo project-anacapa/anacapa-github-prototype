@@ -30,7 +30,7 @@
       <td><%= student.studentid %></td>
       <td><%= link_to 'Show', student %></td>
       <td><%= link_to 'Edit', edit_student_path(student) %></td>
-      <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Remove', remove_student_course_path(studentid: student.studentid, id: @course.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   <tr>
