@@ -1,6 +1,7 @@
 
 class User < ActiveRecord::Base
   rolify
+  has_one :student
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :rememberable, :omniauthable, :trackable, :omniauth_providers => [:github]
@@ -40,6 +41,7 @@ class User < ActiveRecord::Base
       emails.each do |email|
         begin
           student = Student.find_by! email: email["email"]
+          student.user = self
         rescue ActiveRecord::RecordNotFound => e
         end
       end
