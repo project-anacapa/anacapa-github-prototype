@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :edit_roster, :add_student, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :edit_roster, :add_student, :csv_course_roster, :update, :destroy]
   load_and_authorize_resource
 
   # GET /courses
@@ -32,6 +32,11 @@ class CoursesController < ApplicationController
     @student = Student.get_student(params[:student].permit(:first_name, :last_name, :email, :studentid))
     @course.students << @student
     redirect_to :back, :notice => "Student successfully added to course."
+  end
+
+  def csv_course_roster
+    @course.import(params[:file])
+    redirect_to :back, :notice => "Students successfully added to course."
   end
 
   # POST /courses

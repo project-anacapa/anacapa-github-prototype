@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       get 'roster', :to => "courses#edit_roster", :as => :edit_roster
       post 'roster', :to => "courses#add_student", :as => :add_student
+      post 'import_students', :to => "courses#csv_course_roster", :as => :import_students
     end
   end
   resources :admin_panel

@@ -1,5 +1,16 @@
 <h1>Course Roster for <%= @course.dept %> <%= @course.num %></h1>
 
+<br/>
+<div>
+<%= form_tag import_students_course_path, multipart: true, class: "form-inline" do %>
+  <label>Import a CSV File</label>
+  <%= file_field_tag :file, class: "form-control" %>
+  <%= submit_tag "Import CSV", class: "form-control btn btn-primary" %>
+<% end %>
+</div>
+<label>or enter students one-by-one below:</label>
+<br/><br/>
+
 <table class="table">
 <thead>
   <tr>
