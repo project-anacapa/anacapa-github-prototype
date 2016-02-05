@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body data-no-turbolink="true">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
@@ -24,7 +24,10 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Courses", courses_path %></li>
-        <li><%= link_to "Admin Panel", admin_panel_path(:id) %></li>
+        <li><%= link_to "Students", students_path %></li>
+        <% if current_user.is_admin %>
+          <li><%= link_to "Admin Panel", admin_panel_path(:id) %></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>

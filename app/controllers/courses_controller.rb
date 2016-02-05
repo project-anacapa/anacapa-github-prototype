@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :edit_roster, :add_student, :update, :destroy]
   load_and_authorize_resource
 
   # GET /courses
@@ -20,6 +20,18 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+  end
+
+  # GET /courses/1/roster
+  def edit_roster
+    @students = @course.students
+    @newstudent = Student.new
+  end
+
+  def add_student
+    @student = Student.get_student(params[:student].permit(:first_name, :last_name, :email, :studentid))
+    @course.students << @student
+    redirect_to :back, :notice => "Student successfully added to course."
   end
 
   # POST /courses
