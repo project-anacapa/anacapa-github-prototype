@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
   helper_method :current_user
-
   
   def github_emails(token)
     uri = URI.parse("https://api.github.com/user/emails")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131232205) do
+ActiveRecord::Schema.define(version: 20160205081105) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "dept"
@@ -19,7 +19,16 @@ ActiveRecord::Schema.define(version: 20160131232205) do
     t.string   "desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "term"
+    t.integer  "instructor"
   end
+
+  create_table "courses_students", id: false, force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "student_id"
+  end
+
+  add_index "courses_students", ["course_id", "student_id"], name: "index_courses_students_on_course_id_and_student_id", unique: true
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +40,17 @@ ActiveRecord::Schema.define(version: 20160131232205) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "students", force: :cascade do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email"
+    t.string  "studentid"
+    t.integer "user_id"
+  end
+
+  add_index "students", ["email"], name: "index_students_on_email", unique: true
+  add_index "students", ["studentid"], name: "index_students_on_studentid", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -48,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160131232205) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "github_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

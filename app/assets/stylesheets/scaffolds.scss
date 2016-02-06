@@ -4,6 +4,7 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  padding-top: 50px;
 }
 
 p, ol, ul, td {
@@ -35,10 +36,6 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
-}
-
-#alert {
-  color: red;
 }
 
 #notice {

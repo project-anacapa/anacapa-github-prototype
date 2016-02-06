@@ -13,17 +13,21 @@
 
   <div class="field">
     <%= f.label :dept %><br>
-    <%= f.text_field :dept %>
+    <%= f.text_field :dept, class: "form-control", :placeholder => "CMPSC"%>
   </div>
   <div class="field">
     <%= f.label :num %><br>
-    <%= f.text_field :num %>
+    <%= f.text_field :num, class: "form-control", :placeholder => "170"%>
   </div>
   <div class="field">
     <%= f.label :desc %><br>
-    <%= f.text_field :desc %>
+    <%= f.text_field :desc, class: "form-control", :placeholder => "Operating Systems"%>
+  </div>
+  <div class="field">
+    <%= f.label :term %><br>
+    <%= f.text_field :term, class: "form-control", :placeholder => "W16"%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Course", class: "form-control btn btn-primary" %>
   </div>
 <% end %>

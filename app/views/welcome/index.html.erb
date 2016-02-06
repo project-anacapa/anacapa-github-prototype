@@ -1,11 +1,17 @@
-<p>Hello World!</p>
-
 <% if current_user %>
-    <p><%= current_user.to_json %><p>
-    <p><%= github_emails(session[:github_token]) %></p>
-<% else %>
-    <p>No user logged in!</p>
+<p>Welcome, <%= current_user.name %>!</p>
+
+  <% if current_user.student_record and current_user.student_record.courses.any? %>
+    <p>Here is a list of your courses:</p>
+    <ul>
+    <% current_user.student_record.courses.each do |course| %>
+      <li><%= link_to course.dept << course.num, course %></li>
     <% end %>
-	
-<p><%= session.to_json %></p>
-<p><%= session['devise'].to_json %></p>
+    </ul>
+  <% else %>
+    No student or no courses!
+  <% end %>
+
+<% else %> <!-- if not current_user -->
+<p>No user logged in! Please <%= link_to "Log In", user_omniauth_authorize_path(:github) %></p>
+<% end %> <!-- end if current_user -->
