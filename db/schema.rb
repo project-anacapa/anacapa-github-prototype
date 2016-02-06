@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160205081105) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
-  
+
   create_table "students", force: :cascade do |t|
     t.string  "first_name"
     t.string  "last_name"
