@@ -4,11 +4,9 @@ class AdminPanelController < ApplicationController
   before_filter :admin_only
 
   def index
-    @users = User.all
   end
    
   def show
-    @users = User.all
   end
    
   def new
@@ -26,10 +24,10 @@ class AdminPanelController < ApplicationController
   def delete
   end
 
-  def toggle_admin
+  def toggle_admin(id)
   end
 
-  def toggle_instructor
+  def toggle_instructor(id)
   end
 
   private
