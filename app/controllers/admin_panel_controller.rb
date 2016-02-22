@@ -26,11 +26,39 @@ class AdminPanelController < ApplicationController
   end
 
   def toggle_admin
-    redirect_to :back, :notice => "You just toggled the is_admin role."
+    user = User.find(params[:id])
+    toggle_to = !(user.has_role? :admin)
+    if params.has_key? :toggle_to
+      toggle_to = params[:toggle_to]
+    end
+
+    if toggle_to == true
+      user.add_role "admin"
+    else
+      user.remove_role "admin"
+    end
+
+    respond_to do |format|
+      format.json { render json: ["data" => "Setting is_instructor of " + user.name + " to " + toggle_to ]}
+    end
   end
 
   def toggle_instructor
-    redirect_to :back, :notice => "You just toggled the is_instructor role."
+    user = User.find(params[:id])
+    toggle_to = !(user.has_role? :instructor)
+    if params.has_key? :toggle_to
+      toggle_to = params[:toggle_to]
+    end
+
+    if toggle_to == true
+      user.add_role "instructor"
+    else
+      user.remove_role "instructor"
+    end
+
+    respond_to do |format|
+      format.json { render json: ["data" => "Setting is_instructor of " + user.name + " to " + toggle_to ]}
+    end
   end
 
   private
