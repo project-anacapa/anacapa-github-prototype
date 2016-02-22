@@ -1,1 +1,28 @@
-<h1>Hello, anybody there?</h1>
+<h1>Welcome, Admin!</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User Email</th>
+      <th>Is Admin?</th>
+      <th>Is Instructor?</th>
+      <th>User ID</th>
+      <th>Toggle Admin</th>
+      <th>Toggle Insturctor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.has_role? :admin %></td>
+        <td><%= user.has_role? :instructor %></td>
+        <td><%= user.uid %></td>
+        <td><%= button_to 'toggle_admin', toggle_admin_admin_panel_path(id: user.id) %></td>
+        <td><%= button_to 'toggle_instructor', toggle_instructor_admin_panel_path(id: user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

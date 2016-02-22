@@ -14,7 +14,13 @@ Rails.application.routes.draw do
       post 'import_students', :to => "courses#csv_course_roster", :as => :import_students
     end
   end
-  resources :admin_panel
+  resources :admin_panel do
+    member do
+      # POST /admin_panel/toggle_admin/:id
+      post 'toggle_admin', :to => 'admin_panel#toggle_admin', :as => :toggle_admin
+      post 'toggle_instructor', :to => 'admin_panel#toggle_instructor', :as => :toggle_instructor
+    end
+  end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
