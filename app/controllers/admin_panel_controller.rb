@@ -5,29 +5,31 @@ class AdminPanelController < ApplicationController
 
   def index
   end
-   
+
   def show
   end
-   
+
   def new
   end
-   
+
   def create
   end
-   
+
   def edit
   end
-   
+
   def update
   end
-   
+
   def delete
   end
 
-  def toggle_admin(id)
+  def toggle_admin
+    redirect_to :back, :notice => "You just toggled the is_admin role."
   end
 
-  def toggle_instructor(id)
+  def toggle_instructor
+    redirect_to :back, :notice => "You just toggled the is_instructor role."
   end
 
   private

@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   end
   resources :admin_panel do
     member do
-      get '/admin_panel/toggle_admin', to:"admin_panel#toggle_admin", :as => 'toggle_admin'
-      post '/admin_panel/toggle_admin', to:"admin_panel#toggle_admin", :as => 'show_toggle_admin'
-      get '/admin_panel/toggle_instructor', to:"admin_panel#toggle_instructor", :as => 'toggle_instructor'
+      # POST /admin_panel/toggle_admin/:id
+      post 'toggle_admin', :to => 'admin_panel#toggle_admin', :as => :toggle_admin
+      post 'toggle_instructor', :to => 'admin_panel#toggle_instructor', :as => :toggle_instructor
     end
   end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

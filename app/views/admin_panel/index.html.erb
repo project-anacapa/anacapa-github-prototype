@@ -20,8 +20,8 @@
         <td><%= user.has_role? :admin %></td>
         <td><%= user.has_role? :instructor %></td>
         <td><%= user.uid %></td>
-        <td><%= button_to 'toggle_admin', :class => "button" %></td>
-        <td><%= button_to 'toggle_instructor', :class => "button" %></td>
+        <td><%= button_to 'toggle_admin', toggle_admin_admin_panel_path(id: user.id) %></td>
+        <td><%= button_to 'toggle_instructor', toggle_instructor_admin_panel_path(id: user.id) %></td>
       </tr>
     <% end %>
   </tbody>
