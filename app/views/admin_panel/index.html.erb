@@ -16,9 +16,9 @@
         <td><%= user.email %></td>
         <td>
           <div class="onoffswitch">
-              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="admin_toggle"
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox admin_toggle" id="admin_toggle_<%= user.id %>"
                   <% if user.has_role? :admin %> checked<% end %> data-url="<%= toggle_admin_admin_panel_path(id: user.id) %>">
-              <label class="onoffswitch-label" for="admin_toggle">
+              <label class="onoffswitch-label" for="admin_toggle_<%= user.id %>">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
               </label>
@@ -27,9 +27,9 @@
 
         <td>
           <div class="onoffswitch">
-              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="instructor_toggle"
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox instructor_toggle" id="instructor_toggle_<%= user.id %>"
                   <% if user.has_role? :instructor %> checked<% end %> data-url="<%= toggle_instructor_admin_panel_path(id: user.id) %>">
-              <label class="onoffswitch-label" for="instructor_toggle">
+              <label class="onoffswitch-label" for="instructor_toggle_<%= user.id %>">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
               </label>
