@@ -40,7 +40,7 @@ class AdminPanelController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: ["data" => "Setting is_instructor of " + user.name + " to " + toggle_to ]}
+      format.json { render json: ["data" => "Setting is_admin of " + user.name + " to " + toggle_to + " and is now " + user.has_role?(:admin)]}
     end
   end
 
