@@ -25,13 +25,18 @@ class CoursesController < ApplicationController
   # GET /courses/1/roster
   def edit_roster
     @students = @course.students
-    @newstudent = Student.new
+    @newstudent = (flash[:newstudent]) ? Student.new(flash[:newstudent]) : Student.new
   end
 
   def add_student
     @student = Student.get_student(params[:student].permit(:first_name, :last_name, :email, :studentid))
-    @course.students << @student
-    redirect_to :back, :notice => "Student successfully added to course."
+    if @student.is_a? String
+      flash[:newstudent] = params[:student].permit(:first_name, :last_name, :email, :studentid)
+      redirect_to :back, :alert => @student
+    else
+      @course.students << @student
+      redirect_to :back, :notice => "Student successfully added to course."
+    end
   end
 
   def remove_student

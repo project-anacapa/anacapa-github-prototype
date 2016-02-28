@@ -32,7 +32,7 @@ class AdminPanelController < ApplicationController
       toggle_to = params[:toggle_to]
     end
 
-    if toggle_to == true
+    if toggle_to == "true"
       user.add_role "admin"
     else
       user.remove_role "admin"
@@ -50,7 +50,7 @@ class AdminPanelController < ApplicationController
       toggle_to = params[:toggle_to]
     end
 
-    if toggle_to == true
+    if toggle_to == "true"
       user.add_role "instructor"
     else
       user.remove_role "instructor"

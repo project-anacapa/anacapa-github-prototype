@@ -19,12 +19,12 @@ ready = ->
                 elem.attr("checked", !toggle_to)
                 alert("There were problems " + role + " toggling privileges. Try again later")
 
-    $('#admin_toggle').change ->
+    $('.admin_toggle').change ->
         toggle_to = $(this).is ":checked"
         url = $(this).data "url"
         toggle $(this), url, "admin", toggle_to
 
-    $('#instructor_toggle').change ->
+    $('.instructor_toggle').change ->
         toggle_to = $(this).is ":checked"
         url = $(this).data "url"
         toggle $(this), url, "instructor", toggle_to
