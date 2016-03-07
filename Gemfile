@@ -37,6 +37,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do
@@ -61,5 +64,6 @@ gem "font-awesome-rails"
 
 gem 'rails_12factor', group: :production
 
-
-ruby "2.2.1"
+gem 'factory_girl_rails'
+gem 'capybara'
+#ruby "2.2.1"
