@@ -55,13 +55,12 @@
   <% if notice %>
     <div class="alert alert-success" role="alert"><%= notice %></div>
   <% end %>
-<!--
+
   <% if current_user %>
       <%= yield %>
       <% else %>
   <p>Please sign in to continue: <%= link_to "Sign in with GitHub", user_omniauth_authorize_path(:github) %></p>
   <% end %>
-  -->
 </div>
 </body>
 </html>
