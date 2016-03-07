@@ -62,4 +62,4 @@ gem "font-awesome-rails"
 gem 'rails_12factor', group: :production
 
 
-ruby "2.2.0"
+ruby "2.2.1"

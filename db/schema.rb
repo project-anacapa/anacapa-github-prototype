@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160205081105) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "courses", force: :cascade do |t|
     t.string   "dept"
     t.string   "num"
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160205081105) do
     t.integer "student_id"
   end
 
-  add_index "courses_students", ["course_id", "student_id"], name: "index_courses_students_on_course_id_and_student_id", unique: true
+  add_index "courses_students", ["course_id", "student_id"], name: "index_courses_students_on_course_id_and_student_id", unique: true, using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 20160205081105) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], name: "index_roles_on_name"
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string  "first_name"
@@ -49,8 +52,8 @@ ActiveRecord::Schema.define(version: 20160205081105) do
     t.integer "user_id"
   end
 
-  add_index "students", ["email"], name: "index_students_on_email", unique: true
-  add_index "students", ["studentid"], name: "index_students_on_studentid", unique: true
+  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
+  add_index "students", ["studentid"], name: "index_students_on_studentid", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -71,14 +74,16 @@ ActiveRecord::Schema.define(version: 20160205081105) do
     t.string   "github_token"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
   end
 
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "courses", "users", column: "instructor"
+  add_foreign_key "students", "users"
 end

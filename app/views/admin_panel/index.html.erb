@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>User Email</th>
+      <th>User Name</th>
       <th>Administrator</th>
       <th>Instructor</th>
       <th>User ID</th>
@@ -14,6 +15,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
+        <td><%= user.name %></td>
         <td>
           <div class="onoffswitch">
               <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox admin_toggle" id="admin_toggle_<%= user.id %>"
