@@ -57,4 +57,4 @@ For syntax of how to grant or revoke admin privs, type rake super_admin:help
 
 #### Example OAuth Config Example
 
-![OAuth Config Example](https://github.com/ncbrown1/anacapa-github-prototype/raw/master/oauth_settings_example.jpg "Example OAuth Configurations")
+![OAuth Config Example](https://github.com/ncbrown1/anacapa-github-prototype/raw/master/oauth_settings_example.png "Example OAuth Configurations")
