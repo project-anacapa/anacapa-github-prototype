@@ -1,0 +1,47 @@
+<h1>Course Roster for <%= @course.dept %> <%= @course.num %></h1>
+
+<br/>
+<div>
+<%= form_tag import_students_course_path, multipart: true, class: "form-inline" do %>
+  <label>Import a CSV File</label>
+  <%= file_field_tag :file, class: "form-control" %>
+  <%= submit_tag "Import CSV", class: "form-control btn btn-primary" %>
+<% end %>
+</div>
+<label>or enter students one-by-one below:</label>
+<br/><br/>
+
+<table class="table">
+<thead>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Studentid</th>
+    <th colspan="3"></th>
+  </tr>
+</thead>
+<tbody>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.first_name %></td>
+      <td><%= student.last_name %></td>
+      <td><%= student.email %></td>
+      <td><%= student.studentid %></td>
+      <td><%= link_to 'Show', student %></td>
+      <td><%= link_to 'Edit', edit_student_path(student) %></td>
+      <td><%= link_to 'Remove', remove_student_course_path(studentid: student.studentid, id: @course.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <%= form_for @newstudent, url: { action: "add_student"} do |f| %>
+      <td><%= f.text_field :first_name, class: "form-control", :placeholder => "First Name" %></td>
+      <td><%= f.text_field :last_name, class: "form-control", :placeholder => "Last Name" %></td>
+      <td><%= f.text_field :email, class: "form-control", :placeholder => "Email" %></td>
+      <td><%= f.text_field :studentid, class: "form-control", :placeholder => "Student Id" %></td>
+      <td colspan="2"><%= f.submit "Add Student", class: "btn btn-primary form-control" %></td>
+      <td></td>
+    <% end %>
+  </tr>
+</tbody>
+</table>

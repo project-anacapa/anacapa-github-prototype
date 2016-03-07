@@ -1,0 +1,44 @@
+<h1>Welcome, Admin!</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User Email</th>
+      <th>User Name</th>
+      <th>Administrator</th>
+      <th>Instructor</th>
+      <th>User ID</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td>
+          <div class="onoffswitch">
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox admin_toggle" id="admin_toggle_<%= user.id %>"
+                  <% if user.has_role? :admin %> checked<% end %> data-url="<%= toggle_admin_admin_panel_path(id: user.id) %>">
+              <label class="onoffswitch-label" for="admin_toggle_<%= user.id %>">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+              </label>
+          </div>
+        </td>
+
+        <td>
+          <div class="onoffswitch">
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox instructor_toggle" id="instructor_toggle_<%= user.id %>"
+                  <% if user.has_role? :instructor %> checked<% end %> data-url="<%= toggle_instructor_admin_panel_path(id: user.id) %>">
+              <label class="onoffswitch-label" for="instructor_toggle_<%= user.id %>">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+              </label>
+          </div>
+        </td>
+        <td><%= user.uid %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
