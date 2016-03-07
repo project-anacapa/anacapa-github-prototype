@@ -56,6 +56,7 @@ class CoursesController < ApplicationController
 #    @course = Course.new(course_params)
 
     respond_to do |format|
+      @course.instructor = current_user
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
