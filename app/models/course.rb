@@ -30,4 +30,17 @@ class Course < ActiveRecord::Base
     end # end CSV.foreach
     return failed
   end # end import(file)
+
+  def course_slug
+    return self.dept + self.num + "_" + self.term
+  end
+
+  def export
+    csv_out = "studentid,email,first_name,last_name"
+    students = self.students
+    students.each do |s|
+      csv_out << "\n" + s.studentid + "," + s.email + "," + s.first_name + "," + s.last_name
+    end
+    return csv_out
+  end
 end

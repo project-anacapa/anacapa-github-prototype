@@ -54,6 +54,12 @@ class CoursesController < ApplicationController
     end
   end
 
+  def export_course_roster_csv
+    csv_out = @course.export
+    filename = @course.course_slug + "_roster.csv"
+    send_data csv_out, :filename => filename
+  end
+
   # POST /courses
   # POST /courses.json
   def create

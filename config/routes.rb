@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'roster', :to => "courses#add_student", :as => :add_student
       delete 'roster', :to => "courses#remove_student", :as => :remove_student
       post 'import_students', :to => "courses#csv_course_roster", :as => :import_students
+      get 'export_roster', :to => "courses#export_course_roster_csv", :as => :export_roster
     end
   end
   resources :admin_panel do
