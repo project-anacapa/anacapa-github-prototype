@@ -7,6 +7,12 @@ class Course < ActiveRecord::Base
 
   def import(file)
     failed = []
+    fpath = ""
+    begin
+      fpath = file.path
+    rescue Exception => e
+      raise e
+    end
     CSV.foreach(file.path, headers: true) do |row|
 
       stdt_hash = row.to_hash

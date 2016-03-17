@@ -46,8 +46,12 @@ class CoursesController < ApplicationController
   end
 
   def csv_course_roster
-    @course.import(params[:file])
-    redirect_to :back, :notice => "Students successfully added to course."
+    begin
+      @course.import(params[:file])
+      redirect_to :back, :notice => "Students successfully added to course."
+    rescue Exception => e
+      redirect_to :back, :alert => "There were problems importing students from the file."
+    end
   end
 
   # POST /courses
