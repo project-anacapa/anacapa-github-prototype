@@ -58,3 +58,13 @@ For syntax of how to grant or revoke admin privs, type rake super_admin:help
 #### Example OAuth Config Example
 
 ![OAuth Config Example](https://github.com/ncbrown1/anacapa-github-prototype/raw/master/oauth_settings_example.png "Example OAuth Configurations")
+
+# Database tips
+
+If you have a postgres database console prompt:
+
+
+* `\l` to list databases
+* `\dt` to list tables in current database
+* `\connect` <em>database-name</em> to change database
+
