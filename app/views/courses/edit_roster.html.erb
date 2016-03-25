@@ -6,6 +6,7 @@
   <label>Import a CSV File</label>
   <%= file_field_tag :file, class: "form-control" %>
   <%= submit_tag "Import CSV", class: "form-control btn btn-primary" %>
+  <%= link_to "Export CSV", export_roster_course_path, :method => :get, :class => "form-control btn btn-info" %>
 <% end %>
 </div>
 <label>or enter students one-by-one below:</label>

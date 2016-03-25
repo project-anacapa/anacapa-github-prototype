@@ -46,8 +46,18 @@ class CoursesController < ApplicationController
   end
 
   def csv_course_roster
-    @course.import(params[:file])
-    redirect_to :back, :notice => "Students successfully added to course."
+    begin
+      @course.import(params[:file])
+      redirect_to :back, :notice => "Students successfully added to course."
+    rescue Exception => e
+      redirect_to :back, :alert => "There were problems importing students from the file."
+    end
+  end
+
+  def export_course_roster_csv
+    csv_out = @course.export
+    filename = @course.course_slug + "_roster.csv"
+    send_data csv_out, :filename => filename
   end
 
   # POST /courses
@@ -56,6 +66,7 @@ class CoursesController < ApplicationController
 #    @course = Course.new(course_params)
 
     respond_to do |format|
+      @course.instructor = current_user
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
