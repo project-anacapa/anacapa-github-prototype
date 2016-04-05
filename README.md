@@ -3,7 +3,12 @@ Spike, see: https://www.pivotaltracker.com/n/projects/1519297
 
 Before trying to run this web server, you need to do a few administrative steps with github.com to set up proper credentials.
 
-1. Create GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET credentials.  To do that, ...
+1. Create GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET credentials.  To do that, take these steps:
+ * Navigate to: https://github.com/settings/developers
+ * Click "register an application".
+ * Fill it in similar to the picture below
+
+![OAuth Config Example](https://github.com/ncbrown1/anacapa-github-prototype/raw/master/oauth_settings_example.png "Example OAuth Configurations")
 
 
 To run this web server:
@@ -60,9 +65,8 @@ For syntax of how to grant or revoke admin privs, type rake super_admin:help
 1. You should now see a link to "Admin Panel" when you sign in to your website.
 
 
-#### Example OAuth Config Example
 
-![OAuth Config Example](https://github.com/ncbrown1/anacapa-github-prototype/raw/master/oauth_settings_example.png "Example OAuth Configurations")
+
 
 # Database tips
 
