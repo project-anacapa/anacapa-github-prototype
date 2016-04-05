@@ -7,6 +7,7 @@ Before trying to run this web server, you need to do a few administrative steps 
  * Navigate to: https://github.com/settings/developers
  * Click "register an application".
  * Fill it in similar to the picture below
+ * The callback URL should be http://localhost:3000/users/auth/github/callback
 
 ![OAuth Config Example](https://github.com/ncbrown1/anacapa-github-prototype/raw/master/oauth_settings_example.png "Example OAuth Configurations")
 
