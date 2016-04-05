@@ -3,14 +3,18 @@ Spike, see: https://www.pivotaltracker.com/n/projects/1519297
 
 Before trying to run this web server, you need to do a few administrative steps with github.com to set up proper credentials.
 
-1. Create GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET credentials.  To do that, take these steps:
- * Navigate to: https://github.com/settings/developers
- * Click "register an application".
- * Fill it in similar to the picture below
- * The callback URL should be http://localhost:3000/users/auth/github/callback
+= Set up your Github OAuth Credentials =
+
+Before trying to start this web server, you need to create GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET credentials.  You will need these later when you create your .env file.  
+
+Note that the .env file is NOT saved to github, since it contains secret information.  To do that, take these steps:
+
+1. Navigate to: https://github.com/settings/developers
+1. Click "register an application".
+1. Fill it in similar to the picture below
+1. The callback URL should be http://localhost:3000/users/auth/github/callback
 
 ![OAuth Config Example](https://github.com/ncbrown1/anacapa-github-prototype/raw/master/oauth_settings_example.png "Example OAuth Configurations")
-
 
 To run this web server:
 
@@ -21,9 +25,7 @@ To run this web server:
     * `sudo env ARCHFLAGS='-arch x86_64' gem install pg`
 1. Create a file called `.env` in the project root,
   * You can run `cp .env.example .env`
-  * Populate the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` with your own Github App configurations
-  * Instructions on how to do this [here](https://help.github.com/enterprise/11.10.340/admin/articles/configuring-github-oauth/)
-  * Look at an example configuration below
+  * Populate the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` with your own Github App configurations (see instructions earlier in this README.md)
 1. If you are running this for the first time, run `rake db:create`
 1. Execute `rake db:migrate`
 1. Execute `rails s`
