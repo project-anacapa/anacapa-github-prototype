@@ -29,7 +29,7 @@ To run this web server:
 1. If you are running this for the first time, run `rake db:create`
 1. Execute `rake db:migrate`
 1. Execute `rails s`
-1. The rails server should now be running on http://localhost:3000
+1. The rails server should now be running on [http://localhost:3000](http://localhost:3000)
 
 To set initial admin:
 
