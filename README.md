@@ -9,7 +9,7 @@ Before trying to start this web server, you need to create GITHUB_CLIENT_ID and 
 
 Note that the .env file is NOT saved to github, since it contains secret information.  To do that, take these steps:
 
-1. Navigate to: https://github.com/settings/developers
+1. Open this page in a new tab or window (keep this page of instructions open): https://github.com/settings/developers
 1. Click "register an application".
 1. Fill it in similar to the picture below
 1. The callback URL should be http://localhost:3000/users/auth/github/callback
